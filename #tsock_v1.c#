@@ -59,7 +59,7 @@ if (bind(sock1,(struct sockaddr *)&adr_local,lg_adr_local)==-1)
     exit(1) ;}
 
 
-//Recuperation  des messages
+//Recuperation  des messages + affichage
  char * pmesg = malloc(taille*sizeof(char));
  int lg_dist;
  int recv;
