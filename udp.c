@@ -108,12 +108,14 @@ void udp_source(int num_port,int taille,int nb_mess,char*dest)
   memcpy((char*)&(adr_distant.sin_addr.s_addr),hp->h_addr,hp->h_length);
   //envoi du message + affichage
   int sent;
+  char msg='a';
   printf("SOURCE : lg_mesg_emis = %d,port= %d,dest=%s \n",taille,num_port,dest);
 
   for (int i=1; i<=nb_mess;i++)
     {
-      construire_message(pmesg,'a',taille);
+      construire_message(pmesg,msg,taille);
       printf("SOURCE:envoi n°%d (%d) : [",i,taille);
+      msg++;
 
       if ((sent= sendto(sock2,pmesg,taille,option,(struct sockaddr*)&(adr_distant),sizeof(adr_distant)))==-1)
 	{ printf("Erreur sendto\n");

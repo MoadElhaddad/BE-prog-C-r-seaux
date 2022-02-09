@@ -21,6 +21,7 @@ données du réseau */
 /* Sous-programmes*/
 #include "affichage.h"
 #include "udp.h"
+#include "tcp.h"
 void main (int argc, char **argv)
 {
 	int c;
@@ -30,7 +31,7 @@ void main (int argc, char **argv)
 	int source = -1 ; /* 0=puits, 1=source */
 	int udp= 0;          /*  indique le mode utilisé */
 	int num_port = atoi(argv[argc-1]);
-	num_port=htons(num_port);
+	//	num_port=htons(num_port);
 	int lg_message = 30; /*taille par défaut d'un message*/
 	char * dest=argv[argc-2];
 	while ((c = getopt(argc, argv, "pn:su")) != -1) {
@@ -101,7 +102,7 @@ void main (int argc, char **argv)
 	  }
 	else if(source == 1 & udp == 0)
 	  {
-	  // tcp_source();
+	   tcp_source(num_port,lg_message,nb_message,dest);
 	  exit(1);
 	  }
 
@@ -110,7 +111,7 @@ void main (int argc, char **argv)
        udp_puit(num_port,lg_message,nb_message);
      }
 	 else {
-	  // tcp_puit();
+	  tcp_puit(num_port,lg_message,nb_message);
 	  exit(1);}
 
 	   }
