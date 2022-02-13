@@ -20,9 +20,8 @@
 #include <errno.h>
 
 #include "udp.h"
-#include "affichage.h"
 #include "tcp.h"
-
+ #include "affichage2.h"
 
 
 void tcp_source(int num_port,int taille,int nb_mess,char*dest)
@@ -70,12 +69,11 @@ void tcp_source(int num_port,int taille,int nb_mess,char*dest)
 
   for (int i=1; i<=nb_mess;i++)
     {
-      formater_message(pmesg,i);
+      
       construire_message(pmesg,msg,taille);
+      formater_messge(pmesg,taille);
       printf("SOURCE:envoi n°%d (%d) : [",i,taille);
       msg++;
-      /* if (i>26) */
-      /* 	{ msg=msg-26;} */
 
       if ((sent=write(sock2,pmesg,taille))==-1)
 	{ printf("Erreur write\n");

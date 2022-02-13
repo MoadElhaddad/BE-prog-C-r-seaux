@@ -5,7 +5,7 @@
   #include <unistd.h>
   /* déclaration des types de base */
   #include <sys/types.h>
-  /* constantes relatives aux domaines, types et protocoles */
+  /* constantes relatives aux domaines, types et protocoles form*/
   #include <sys/socket.h>
   /* constantes et structures propres au domaine UNIX */
   #include <sys/un.h>
@@ -20,7 +20,6 @@
   #include <errno.h>
 
   #include "udp.h"
-  #include "affichage.h"
   #include "affichage2.h"
   void udp_puit(int num_port, int taille,int nb_message)
   {

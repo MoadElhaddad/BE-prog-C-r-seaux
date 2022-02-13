@@ -1,21 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h> 
-#include "affichage.h"
+#include "affichage2.h"
 
-void construire_message (char *message, char motif, int lg)
+void construire_message2 (char *message, char motif, int lg)
 {
 int i;
-for (i=5 ; i<lg+5; i++) message[i] = motif;
+for (i=0 ; i<lg; i++) message[i] = motif;
 }
-
-void afficher_message (char *message, int lg)
-{
-int i;
-printf("message construit : ");
- for (i=0 ; i<lg+5 ; i++) printf("%c", message[i]) ;printf("]"); printf("\n");
-}
-
 
 void formater_message (char *message, int n)
 {
@@ -31,7 +23,7 @@ if (n>=100000)
         {
             *(message+i)='-';
         }
-             
+        //char nb[1];      
         *(message+4)= n + '0';
     }
     if (n>=10 & n<100)

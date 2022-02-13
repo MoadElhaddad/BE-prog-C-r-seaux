@@ -1,0 +1,23 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h> 
+#include "affichage2.h"
+
+void construire_message2 (char *message, char motif, int lg)
+{
+int i;
+for (i=0 ; i<lg; i++) message[i] = motif;
+}
+
+void afficher_message2 (char *message, int lg)
+{
+int i;
+printf("message construit : ");
+ int lgr=lg+6;
+ char tab[lgr+6]="-----";
+ char digits[6];
+ for (i=0 ; i<lg ; i++)
+   {sprintf(tab+4, "%c",message[i]) ;
+     printf("%s",tab);
+    } printf("]"); printf("\n");
+}
