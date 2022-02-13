@@ -21,7 +21,6 @@
 
   #include "udp.h"
   #include "affichage.h"
-  #include "affichage2.h"
   void udp_puit(int num_port, int taille,int nb_message)
   {
   printf("On rentre dans udp_puit\n");
@@ -58,11 +57,11 @@
    int recv=1;
    int lg_dist=sizeof(adr_distant);
    int i=1;
-   printf("PUITS : lg_mesg_lu= %d,port= %d,receptions = infini  \n",taille,num_port); 
+   printf("PUITS : lg_mesg_lu= %d,port= %d,receptions = infini  \n",taille,num_port);
    while (recv !=0)
      {
        recv= recvfrom(sock1,pmesg,taille,option,(struct sockaddr*)&adr_distant,&lg_dist);
-       
+
        if (recv ==-1)
          {printf("erreur recivfrom\n");
   	 exit(1);}
@@ -122,9 +121,9 @@ void udp_source(int num_port,int taille,int nb_mess,char*dest)
       if ((sent= sendto(sock2,pmesg,taille,option,(struct sockaddr*)&(adr_distant),sizeof(adr_distant)))==-1)
 	{ printf("Erreur sendto\n");
 	  exit(1);}
-      afficher_message(pmesg,sent); 
-     
-       
+      afficher_message(pmesg,sent);
+
+
     }
   printf("SOURCE : FIN \n");
 }
