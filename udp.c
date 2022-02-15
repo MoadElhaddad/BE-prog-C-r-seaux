@@ -116,13 +116,17 @@ void udp_source(int num_port,int taille,int nb_mess,char*dest)
       formater_message(pmesg,i);
       construire_message(pmesg,msg,taille);
       printf("SOURCE:envoi n°%d (%d) : [",i,taille);
-      msg++;
+      
 
       if ((sent= sendto(sock2,pmesg,taille,option,(struct sockaddr*)&(adr_distant),sizeof(adr_distant)))==-1)
 	{ printf("Erreur sendto\n");
 	  exit(1);}
       afficher_message(pmesg,sent);
-
+       if (msg=='z') 
+	{ msg='a';}
+      else
+	{msg++;}
+       
 
     }
   printf("SOURCE : FIN \n");

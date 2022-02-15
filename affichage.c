@@ -36,7 +36,7 @@ if (n>=100000)
     }
     if (n>=10 & n<100)
     {
-    	char nb[3]; //Ajout de 1 pour le dernier charactère
+    	char nb[3]; 
 
         for (int i=0 ; i<3 ; i++)
         {
@@ -50,7 +50,7 @@ if (n>=100000)
     }
     if (n>=100 & n<1000)
     {
-        char nb[4]; //Même principe
+        char nb[4]; 
         for (int i=0 ; i<2 ; i++)
         {
             *(message+i)='-';
@@ -68,7 +68,7 @@ if (n>=100000)
     {
     	int j=1000;
 
-        char nb[5]; //Pareil, où avais-tu mis ta tete Moad ???
+        char nb[5]; 
         for (int i=0 ; i<2 ; i++)
         {
             *(message+i)='-';
@@ -88,7 +88,7 @@ if (n>=100000)
     }
     if (n>=10000 & n<100000)
     {
-        char nb[6]; //Il finira par comprendre
+        char nb[6]; 
         for (int i=0 ; i<2 ; i++)
         {
             *(message+i)='-';

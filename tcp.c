@@ -73,15 +73,16 @@ void tcp_source(int num_port,int taille,int nb_mess,char*dest)
       formater_message(pmesg,i);
       construire_message(pmesg,msg,taille);
       printf("SOURCE:envoi n°%d (%d) : [",i,taille);
-      msg++;
-      /* if (i>26) */
-      /* 	{ msg=msg-26;} */
-
+      
+      
       if ((sent=write(sock2,pmesg,taille))==-1)
 	{ printf("Erreur write\n");
 	  exit(1);}
-      afficher_message(pmesg,sent); 
-     
+      afficher_message(pmesg,sent);
+      if (msg=='z') 
+	{ msg='a';}
+      else
+	{msg++;}
        
     }
   printf("SOURCE : FIN \n");
