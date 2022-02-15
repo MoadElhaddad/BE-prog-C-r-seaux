@@ -35,7 +35,7 @@ void main (int argc, char **argv)
 	//	num_port=htons(num_port);
 	int lg_message = 30; /*taille par défaut d'un message*/
 	int maxsize = 30;
-	int messmax=1000;
+	int messmax=100000-1;
 	char * dest=argv[argc-2];
 	while ((c = getopt(argc, argv, "pn:sul:")) != -1) {
 		switch (c) {
@@ -64,17 +64,17 @@ void main (int argc, char **argv)
 
 
 
-		case 'u': 
+		case 'u':
 		       udp=1;
 		       break;
-		       
+
 		case 'l':
 		  lg_message = atoi(optarg);
 		  if (lg_message > maxsize)
 		    {printf("vous avez depasse la taille max permise de %d octets: envoi impossible\n",maxsize);
 		      exit(1);}
 		       break;
-		              
+
 
 
 		default:
@@ -108,7 +108,7 @@ void main (int argc, char **argv)
 	}
   printf("Source = %d et udp=%d\n",source,udp);
 	//Appel de la fonction à executer
-        
+
 	if (source == 1 & udp == 1)
 	  {
 	  udp_source(num_port,lg_message,nb_message,dest);

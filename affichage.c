@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h> 
+#include <string.h>
 #include "affichage.h"
 
 void construire_message (char *message, char motif, int lg)
@@ -31,12 +31,12 @@ if (n>=100000)
         {
             *(message+i)='-';
         }
-             
+
         *(message+4)= n + '0';
     }
     if (n>=10 & n<100)
     {
-    	char nb[2];
+    	char nb[3]; //Ajout de 1 pour le dernier charactère
 
         for (int i=0 ; i<3 ; i++)
         {
@@ -50,7 +50,7 @@ if (n>=100000)
     }
     if (n>=100 & n<1000)
     {
-        char nb[3];
+        char nb[4]; //Même principe
         for (int i=0 ; i<2 ; i++)
         {
             *(message+i)='-';
@@ -68,7 +68,7 @@ if (n>=100000)
     {
     	int j=1000;
 
-        char nb[4];
+        char nb[5]; //Pareil, où avais-tu mis ta tete Moad ???
         for (int i=0 ; i<2 ; i++)
         {
             *(message+i)='-';
@@ -88,7 +88,7 @@ if (n>=100000)
     }
     if (n>=10000 & n<100000)
     {
-        char nb[4];
+        char nb[6]; //Il finira par comprendre
         for (int i=0 ; i<2 ; i++)
         {
             *(message+i)='-';
@@ -109,4 +109,3 @@ if (n>=100000)
         *(message+4)=*nb;
     }
 }
-

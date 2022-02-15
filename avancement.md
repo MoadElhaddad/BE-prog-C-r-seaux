@@ -42,7 +42,7 @@ La version v3 de tsock intègre les fonctions de formatage et d'affichage des me
 
 [X] Le formattage et affichage des messages selon le cahier des charges sont opérationnels
 
-[pb si n>10] la prise en compte de l'option -n en émission aussi bien avec UDP et TCP est correcte
+[X] la prise en compte de l'option -n en émission aussi bien avec UDP et TCP est correcte
 
 [X] la prise en compte de l'option -n en réception avec UDP est correcte
 
