@@ -1,5 +1,5 @@
 ## Important
-Nous avons du créer une nouvelle branche BAL car nous avions des conflits sur l'ancienne.
+Nous avons dû créer une nouvelle branche BAL car nous avions des conflits sur l'ancienne.
 # BE_Prog_C_Reseau
 ## BE Programmation C et réseau - 3 IMACS
 
