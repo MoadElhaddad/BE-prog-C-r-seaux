@@ -12,7 +12,7 @@ for (i=5 ; i<lg+5; i++) message[i] = motif;
 void afficher_message (char *message, int lg)
 {
 int i;
-printf("message construit : ");
+printf("message construit :");
  for (i=0 ; i<lg+5 ; i++) printf("%c", message[i]) ;printf("]"); printf("\n");
 }
 

@@ -26,7 +26,7 @@ données du réseau */
 #include "emetteur.h"
 #include "recepteur.h"
 #include "bal.h"
-int messmax = 9999; // taille max d'un message
+int messmax = 99999; // taille max d'un message
 //####################################################################################
 //---------------------------------------------------#################################
 //--------------------SP BAL-------------------------#################################
@@ -273,7 +273,7 @@ void Serv_BAL(int port)
     char *message;
     int lg_recv = -1;
     int lg_sent = -1;
-    int taille = 50;
+    int taille = 30;
     int type = -1;
     int nb;
     int lg;
@@ -348,7 +348,7 @@ void Serv_BAL(int port)
                 n++;
             }
 
-            Affiche_BAL(bal, lg);
+            Affiche_BAL(bal, lg_recv);
         }
         // Gestion réception
         else if (atoi(pdu) == 1)
