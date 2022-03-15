@@ -104,7 +104,7 @@ void recepteur_BAL(int num_port, char *dest, int Num_Machine)
       printf("Erreur à la réception du message\n");
       exit(1);
     }
-    printf("PUITS : Réception de la lettre n°%d : [", n);
+    printf("Récepteur : Réception de la lettre n°%d : [", n);
     afficher_message(pmesg, lg);
     n++;
   }

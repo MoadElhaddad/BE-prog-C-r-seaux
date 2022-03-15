@@ -74,10 +74,20 @@ void main(int argc, char **argv)
 				printf("nb de message max est de %d :\n", messmax);
 				exit(1);
 			}
+			if (r==1)
+		    { printf("veuillez récupérer la totalité du contenu\n ");
+			 exit(1);}	     
+
+				
 			break;
 
 		case 'u':
 			udp = 1;
+			if ((r==1)||(e==1))
+		    {
+				printf("les échanges se font par TCP , pas possible UDP\n" );
+				exit(1);
+			}	
 			break;
 
 		case 'l':
@@ -86,14 +96,27 @@ void main(int argc, char **argv)
 			{
 				printf("vous avez depasse la taille max permise de %d octets: envoi impossible\n", maxsize);
 				exit(1);
+			}	
+			if (r==1)
+		    {	
+				 printf("veuillez récupérer la totalité de la BAL\n");
+                 exit(1);
 			}
+			
 			break;
 
 		case 'e':
+		if (r==1)
+		{printf("impossible d'être emetteur et recepteur au même temps\n");	
+			exit(1);}
 			num_machine = atoi(optarg); // on rentre le destinataire des messages
 			e = 1;
+			
 			break;
 		case 'r':
+		if (e==1)
+		{printf("impossible d'être emetteur et recepteur au même temps\n");	
+			exit(1);}
 			num_machine = atoi(optarg); // on indique notre numero de destinataire
 			r = 1;
 			break;
