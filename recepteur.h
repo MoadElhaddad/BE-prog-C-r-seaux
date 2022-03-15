@@ -1,0 +1,1 @@
+void recepteur_BAL(int num_port,char *dest, int Num_Machine);
