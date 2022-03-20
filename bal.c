@@ -27,6 +27,7 @@ données du réseau */
 #include "recepteur.h"
 #include "bal.h"
 int messmax = 99999; // taille max d'un message
+int lg_sent = -1;
 //####################################################################################
 //---------------------------------------------------#################################
 //--------------------SP BAL-------------------------#################################
@@ -42,7 +43,7 @@ LISTE_BAL *init_BAL()
     return liste;
 }
 
-void Affiche_BAL(BAL *bal, int lg) // Affiche le contenue d'une BAL
+void Affiche_BAL(BAL *bal, int lg_recv) // Affiche le contenue d'une BAL
 {
     printf("La BAL n°%d contient %d lettres \n", bal->num, bal->nb);
     bal->lettre_actuel = bal->lettre_debut;
@@ -51,11 +52,13 @@ void Affiche_BAL(BAL *bal, int lg) // Affiche le contenue d'une BAL
     while (bal->lettre_actuel != NULL)
     {
         printf("BAL n°%d | %d Lettres, lettre n°%d : [", bal->num, bal->nb, n);
-        afficher_message(bal->lettre_actuel->message, lg);
+        afficher_message(bal->lettre_actuel->message, (lg_recv));//lg
         bal->lettre_actuel = bal->lettre_actuel->suiv;
         n++;
     }
     printf("\n\n");
+    n=1; //On remet n à 1 sinon restitution de la lettre 1 affiché comme restitution lettre 11
+
 }
 
 void printLISTE(LISTE_BAL *liste) // nombre de Bals
@@ -212,6 +215,7 @@ BAL *Trouve_BAL(LISTE_BAL *liste, int num) // trouve ou crée BAL
 void Ajoute_Lettre(int n, int lg, BAL *bal, char *mess) //Ajoute lettre en fin de BAL
 {
     bal->nb = (bal->nb) + 1;
+    lg=30;//DEBUG
     LETTRE *New_BAL;
     New_BAL = (LETTRE *)malloc(sizeof(LETTRE));
     New_BAL->num = n + 1;
@@ -233,7 +237,9 @@ void Ajoute_Lettre(int n, int lg, BAL *bal, char *mess) //Ajoute lettre en fin d
 
     New_BAL->message = malloc(lg * sizeof(char));
     for (int i = 0; i < lg; i++)
+    {          
         New_BAL->message[i] = mess[i];
+    }
 }
 
 void Vide(BAL *bal) // détruit la bal
@@ -317,25 +323,25 @@ void Serv_BAL(int port)
             exit(1);
         }
 
-        pdu = malloc(50 * sizeof(char));
+        pdu = malloc(30 * sizeof(char)); 
         if ((taille = read(sock2, pdu, taille)) < 0)
         {
             printf("Echec de lecture du PDU entrant\n");
             exit(1);
         }
-        sscanf(pdu, "%d %d %d %d", &type, &nBAL, &nb, &lg);
+        sscanf(pdu, "%d %d %d %d", &type, &nBAL, &nb, &lg_recv); //lg_recv
+        printf("lg revc=%d\n",lg_recv);
         // Machine distante est émetrice 
         if (atoi(pdu) == 0)
         {
             printf("Réception des lettres à destination de la machine n°%d\n\n", nBAL);
-            message = malloc(lg * sizeof(char));
             int n = 0;
-            sscanf(pdu, "%d %d %d %d", &type, &nBAL, &nb, &lg);
+            sscanf(pdu, "%d %d %d %d", &type, &nBAL, &nb, &lg); //lg
+            message = malloc((lg) * sizeof(char));
             bal = Trouve_BAL(liste, nBAL);
-
             while (n != nb)
             {
-                message = malloc(lg * sizeof(char));
+                message = malloc((lg) * sizeof(char));
                 if ((lg_recv = read(sock2, message, lg)) == -1)
                 {
                     printf("Erreur de lecture\n");
@@ -343,24 +349,24 @@ void Serv_BAL(int port)
                 }
                 if (lg_recv > 0)
                 {
-                    Ajoute_Lettre(n, lg, bal, message);
+                    Ajoute_Lettre(n, 30, bal, message); //ok
                 }
                 n++;
             }
 
-            Affiche_BAL(bal, lg_recv);
+            Affiche_BAL(bal, 30); //30-> Taille max, empèche de n'afficher que les premiers charactères si des messages plus court succèdent à des messages longs
         }
         // Gestion réception
         else if (atoi(pdu) == 1)
         {
             sscanf(pdu, "%d %d", &type, &nBAL);
-            printf("        Restitution des lettres à destination de la machine n%d \n\n", nBAL);
+            printf("        Restitution des lettres à destination de la machine n %d \n\n", nBAL);
             lg = Trouve_BAL_Recepteur(liste, nBAL);
             if (lg == -1) // Si BAL vide ->
             {
                 printf("La BAL n'existe pas, on informe la machine distante\n\n");
                 sprintf(pdu, "%d %d", lg, nb);
-                int lg_sent = -1;
+                
                 nb = 1;
                 if ((lg_sent = write(sock2, pdu, taille)) == -1)
                 {
@@ -408,7 +414,7 @@ void Serv_BAL(int port)
         }
         else
         {
-            printf("PDU non reconnu, on quitte par sécurité\n");
+            printf("PDU non reconnu\n");
             exit(1);
         }
         printLISTE(liste);

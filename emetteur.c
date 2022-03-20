@@ -35,7 +35,9 @@ void envoi_bal(int num_port, char *dest, int nb_mess, int taille, int Num_Machin
   struct hostent *hp;
   int lg_adr_local = sizeof(adr_distant);
   int connection;
-  char *pmesg = malloc(taille * sizeof(char));
+  /*char *pmesg = malloc(taille * sizeof(char));*/
+  // TEST
+  char *pmesg = malloc(30 * sizeof(char));
   char *pdu = malloc(taille_pdu * sizeof(char));
   char msg = 'a';
 

@@ -24,5 +24,5 @@ void Vide(BAL *bal) ;
 BAL* Trouve_BAL(LISTE_BAL*liste, int num);
 int Trouve_BAL_Recepteur(LISTE_BAL*liste, int num);
 void Ajoute_Lettre (int n, int lg, BAL* bal , char* mess);
-void Affiche_BAL(BAL* bal,int lg);
+void Affiche_BAL(BAL* bal,int lg_recv);
 void Serv_BAL(int port);

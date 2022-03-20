@@ -13,7 +13,7 @@ void afficher_message (char *message, int lg)
 {
 int i;
 printf("message construit :");
- for (i=0 ; i<lg ; i++) printf("%c", message[i]) ;printf("]"); printf("\n");
+ for (i=0 ; i<(lg-1) ; i++) printf("%c", message[i]); printf("]"); printf("\n");
 }
 
 
