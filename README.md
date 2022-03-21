@@ -1,5 +1,9 @@
 ## Important
-Nous avons dû créer une nouvelle branche BAL car nous avions des conflits sur l'ancienne.
+Nous avons dû créer une nouvelle branche BAL car nous avions des conflits sur l'ancienne.\
+Compilation avec make, exécution avec ./bal\
+Le programme final comporte en plus du sytème de BAL les options TCP et UDP -u de la partie I.\
+Le système de BAL fonctionne parfaitement avec une taille de lettre de 30 octets -l30\
+Si la longueur des messages est inférieure à 30 octets, il y à un décallage dans l'affichage côté BAL et récepteur.\
 # BE_Prog_C_Reseau
 ## BE Programmation C et réseau - 3 IMACS
 
